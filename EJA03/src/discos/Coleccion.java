@@ -22,7 +22,7 @@ public class Coleccion implements CRUD {
     @Override
     public Disco anadeDisco(Disco disco) {
         for(int i=0;i<discos.length;i++) {
-            if (discos[i]!=null) {
+            if (discos[i]==null) {
                 discos[i]=disco;
                 return disco;
             }
@@ -31,20 +31,19 @@ public class Coleccion implements CRUD {
     }
 
     @Override
-    public Disco actualizaDisco(String codigo, String nombre, String autor, String genero, int duracion) {
+    public String actualizaDisco(String codigo, String nombre, String autor, String genero, int duracion) {
         for(int i=0; i<=discos.length;i++) {
-            if(codigo==discos[i].getCodigo()) {
-                if(!nombre.equals(""))
+            if(discos[i]!=null) {
+                if(codigo==discos[i].getCodigo()) {
                     discos[i].setNombre(nombre);
-                if(!autor.equals(""))
                     discos[i].setAutor(autor);
-                if(!genero.equals(""))
                     discos[i].setGenero(genero);
-                if(duracion!=0)
                     discos[i].setDuracion(duracion);
+                    return discos[i].toString();
+                }
             }
         }
-        return new Disco(nombre, autor, genero, duracion);
+        return "";
     }
 
     @Override
